@@ -12,6 +12,15 @@
     border: groove;
     padding-left: 20%;
 }
+.formcss{
+    display: flex;
+    flex-wrap: wrap;
+    background-color:rgb(216, 216, 174);
+    border: groove;
+    padding-left: 20%;
+    width:40vw;
+    height:50vh;
+}
 .navbar{
     display: flex;
     flex-direction: column;

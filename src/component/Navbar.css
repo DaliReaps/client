@@ -8,7 +8,7 @@
     display: flex;
     flex-wrap: nowrap;
     z-index: 1;
-    background-color: rgba(219, 109, 109, 0.541);
+    background-color: rgb(210, 204, 204);
     justify-content: space-around;
     font-size: 30px;
     text-decoration:none
@@ -24,7 +24,7 @@ a:hover {
     margin: 0px;
     list-style-type: none;
     display: inline-block;
-    color: rgb(221, 26, 22);
+    color: rgb(176, 176, 84);
    
 }
 

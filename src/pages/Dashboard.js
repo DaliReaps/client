@@ -8,6 +8,7 @@ import { getorders,deleteorder } from '../redux/slices/orderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState,useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import {useNavigate} from 'react-router-dom'
 import Form from "./Form.js"
 import UserForm from "./UserForm.js"
 import  "./UserCard.css"
@@ -15,15 +16,17 @@ import  "./UserCard.css"
 
 const Dashboard = () => {
   const dispatch=useDispatch()
-  const {allusers}=useSelector(state=>state.user)
+  const navigate=useNavigate()
+  const {allusers,isAdmin}=useSelector(state=>state.user)
   const {menudata,isLoading}=useSelector(state=>state.menu)
   const {orderdata}=useSelector(state=>state.order)
   const  [etat,setEtat]=useState({})
   useEffect(()=>{dispatch(getusers()) 
                  dispatch(getmenus())
-                 dispatch(getorders())
-  },[])
-  
+                 dispatch(getorders())}
+  ,[])
+  useEffect(()=>{if (!isAdmin) navigate("/register")},[isAdmin])
+
   
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {dispatch(addmenu(data))
@@ -64,7 +67,7 @@ const Dashboard = () => {
                 {
                     close => (
                         <div className='modal'>
-                            <div className='content'>
+                            <div className='formcss'>
                             <UserForm id={el._id}/>
                             </div>
                             <div>
@@ -104,14 +107,14 @@ const Dashboard = () => {
       <h3>{el.rating}</h3>
       
       <div style={{display:'flex',justifyContent:'space-around',width:'60vw'}}>
-      <Popup trigger=
+      <Popup  trigger=
                 {<button style={{backgroundColor:'rgb(176, 176, 84)',width:'200px',borderRadius:'20px'}}> Update menu </button>}
                 modal nested>
                 {
                     close => (
                         <div className='modal'>
-                            <div className='content'>
-                            <Form id={el._id} />
+                            <div className='formcss' style={{height:'50%'}}>
+                            <Form  id={el._id} />
                             </div>
                             <div>
                                 <button onClick=

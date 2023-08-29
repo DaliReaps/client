@@ -13,14 +13,14 @@ const Register = () => {
   return (
     <div>
       <div style={{
-        backgroundImage:"url('https://cdn.wallpapersafari.com/49/52/3gLEdk.jpg')"
+        backgroundImage:"url('https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg')"
         ,backgroundSize:"100vw",
-        height:"700px",
+        height:"100vh",
         backgroundRepeat:"no-repeat"
     }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} >
       <input type="text" placeholder="First name" {...register("firstname", {required: true})} />
-      <input type="text" placeholder="Last name" {...register("fastname", {required: true})} />
+      <input type="text" placeholder="Last name" {...register("lastname", {required: true})} />
       <input type="email" placeholder="Email" {...register("email", {required: true})} />
       <input type="password" placeholder="Password" {...register("password", {required: true, max: 20, min: 6})} />
       <input type="number" placeholder="Age" {...register("age", {required: true})} />

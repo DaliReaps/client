@@ -13,5 +13,6 @@ img{
     align-items: baseline;
     justify-content: center;
     gap: 25px;
+    text-decoration: none;
     
 }

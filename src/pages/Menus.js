@@ -14,6 +14,8 @@ const Menus = () => {
   const navigate=useNavigate()
   const dispatch=useDispatch()
   useEffect(()=>{dispatch(getmenus())},[])
+  
+  
   const {menudata,isLoading}=useSelector(state=>state.menu)
   const orderclick=(el)=>{console.log("hi")
   }
@@ -39,7 +41,7 @@ alt="new"
                 {
                     close => (
                         <div className='modal'>
-                            <div className='content'>
+                            <div className='formcss'>
                             <OrderForm id={el._id} />
                             </div>
                             <div>
@@ -138,7 +140,7 @@ alt="new"
                 {
                     close => (
                         <div className='modal'>
-                            <div className='content'>
+                            <div className='formcss'>
                             <OrderForm id={el._id} />
                             </div>
                             <div>

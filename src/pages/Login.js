@@ -12,13 +12,16 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {console.log(data);
   dispatch(signin(data))}
+
   useEffect(()=>{if (isAdmin) navigate("/dashboard")},[isAdmin])
+  
+  
   console.log(errors);
   return (
     <div style={{
-      backgroundImage:"url('https://cdn.wallpapersafari.com/49/52/3gLEdk.jpg')"
+      backgroundImage:"url('https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg')"
       ,backgroundSize:"100vw",
-      height:"700px",
+      height:"120vh",
       backgroundRepeat:"no-repeat"
   }}>
     <form onSubmit={handleSubmit(onSubmit)}>

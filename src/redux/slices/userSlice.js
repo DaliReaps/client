@@ -94,6 +94,7 @@ const userSlice=createSlice({
     reducers:{logout:(state)=>{
             localStorage.removeItem('isAuth')
             localStorage.removeItem('token')
+            localStorage.removeItem('isAdmin')
             state.isAuth=false
             state.token=null
             state.isAdmin=false
@@ -114,7 +115,7 @@ state.token=null},
     [signin.fulfilled]:(state,action)=>{
         (action.payload.user.role==="admin")? 
         state.isAdmin=true : state.isAdmin=false
-        localStorage.setItem("admin",state.isAdmin)
+        localStorage.setItem("isAdmin",state.isAdmin)
     state.isLoading=false
     state.userdata=action.payload.user
     state.token=action.payload.token
