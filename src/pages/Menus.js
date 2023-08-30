@@ -14,11 +14,8 @@ const Menus = () => {
   const navigate=useNavigate()
   const dispatch=useDispatch()
   useEffect(()=>{dispatch(getmenus())},[])
-  
-  
   const {menudata,isLoading}=useSelector(state=>state.menu)
-  const orderclick=(el)=>{console.log("hi")
-  }
+  
   return (
     <div className='menus' >
       <div >

@@ -5,16 +5,17 @@ import { signin } from '../redux/slices/userSlice';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
+import {  toast } from 'react-toastify';
 const Login = () => {
   const navigate=useNavigate()
-  const {isAdmin}=useSelector(state=>state.user)
+  const {isAdmin,isAuth}=useSelector(state=>state.user)
   const dispatch=useDispatch()
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {console.log(data);
-  dispatch(signin(data))}
+  dispatch(signin(data));
+}
 
   useEffect(()=>{if (isAdmin) navigate("/dashboard")},[isAdmin])
-  
   
   console.log(errors);
   return (
@@ -29,6 +30,7 @@ const Login = () => {
       <input type="password" placeholder="Password" {...register("password", {required: true, max: 20, min: 6})} />
       <input type="submit" />
     </form>
+  
     </div>
   )
 }

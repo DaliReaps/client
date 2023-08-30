@@ -2,10 +2,13 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux'
 import {updatemenu } from '../redux/slices/menuSlice'
+import {  toast } from 'react-toastify';
+
 const Form = ({id}) => {
 const dispatch=useDispatch()
 const { register, handleSubmit, formState: { errors } } = useForm();
-const onSubmit = data => {dispatch(updatemenu({...data,menuid:id}))}
+const onSubmit = data => {dispatch(updatemenu({...data,menuid:id}))
+toast("menu updated successfully")}
   return (
 <div style={{height:'40%'}}>
  <form onSubmit={handleSubmit(onSubmit)}>

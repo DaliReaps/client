@@ -2,10 +2,12 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux'
 import {updateuser } from '../redux/slices/userSlice'
+import {  toast } from 'react-toastify';
 const UserForm = ({id}) => {
 const dispatch=useDispatch()
 const { register, handleSubmit, formState: { errors } } = useForm();
-const onSubmit = data => {dispatch(updateuser({...data,userid:id}))}
+const onSubmit = data => {dispatch(updateuser({...data,userid:id}));
+toast("user updated successfully")}
   return (
 <div style={{width:'40%',justifyContent:'center'}}>
  <form  onSubmit={handleSubmit(onSubmit)}>

@@ -12,7 +12,7 @@ import {useNavigate} from 'react-router-dom'
 import Form from "./Form.js"
 import UserForm from "./UserForm.js"
 import  "./UserCard.css"
-
+import {  toast } from 'react-toastify';
 
 const Dashboard = () => {
   const dispatch=useDispatch()
@@ -26,11 +26,12 @@ const Dashboard = () => {
                  dispatch(getorders())}
   ,[])
   useEffect(()=>{if (!isAdmin) navigate("/register")},[isAdmin])
+  useEffect(()=>{(isAdmin)? toast("Admin connected successfully"): toast("Admin disconnected")},[isAdmin])
 
   
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {dispatch(addmenu(data))
-    console.log(data)
+    toast("menu added successfully")
     }
   
   return (
@@ -80,7 +81,7 @@ const Dashboard = () => {
                     )
                 }
             </Popup>
-            <button style={{backgroundColor:'rgb(176, 176, 84)',width:'100px',borderRadius:'20px'}} onClick={()=>dispatch(deleteuser(el._id))}>Delete </button>
+            <button style={{backgroundColor:'rgb(176, 176, 84)',width:'100px',borderRadius:'20px'}} onClick={()=>{dispatch(deleteuser(el._id));toast("user deleted successfully")}}>Delete </button>
 
           </div>
         </div>
@@ -127,7 +128,7 @@ const Dashboard = () => {
                 }
             </Popup>
       
-      <button  style={{backgroundColor:'rgb(176, 176, 84)',width:'200px',borderRadius:'20px'}} onClick={()=>dispatch(deletemenu(el.name))}>Delete </button>
+      <button  style={{backgroundColor:'rgb(176, 176, 84)',width:'200px',borderRadius:'20px'}} onClick={()=>{dispatch(deletemenu(el.name));toast("menu deleted successfully")}}>Delete </button>
       </div></div>
       <img src={`${el.img}`} style={{height:'300px',width:'300px'}}/>
       
@@ -144,7 +145,7 @@ const Dashboard = () => {
    <img style={{width:'30vw',height:'30vh'}} src= {`${el.item.img}`}></img>
    <div style={{display:'flex',flexDirection:'row',left:'0'}}><h3> Total Item Price:</h3><h4> {`${el.item.price*el.numberOfItems}`}$</h4></div>
    
-   <button style={{backgroundColor:'rgb(176, 176, 84)',width:'200px',borderRadius:'20px'}} onClick={()=>dispatch(deleteorder(el._id))}>Delete </button>
+   <button style={{backgroundColor:'rgb(176, 176, 84)',width:'200px',borderRadius:'20px'}} onClick={()=>{dispatch(deleteorder(el._id));toast("Order deleted successfully")}}>Delete </button>
       
       </div>
       

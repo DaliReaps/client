@@ -17,9 +17,11 @@
     flex-wrap: wrap;
     background-color:rgb(216, 216, 174);
     border: groove;
-    padding-left: 20%;
+    padding-left: 0;
+    margin-left: 0;
     width:40vw;
     height:50vh;
+    
 }
 .navbar{
     display: flex;
