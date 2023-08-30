@@ -2,7 +2,7 @@ import {createSlice,createAsyncThunk, configureStore} from"@reduxjs/toolkit"
 import axios from "axios"
 
 export const signup= createAsyncThunk("/api/register",
-async(info,rejectWithValue)=>{
+async(info,{rejectWithValue})=>{
     try {
     const res=await axios.post("/register",info)
     return res.data
@@ -11,18 +11,18 @@ async(info,rejectWithValue)=>{
 }
 })
 export const signin= createAsyncThunk("/api/login",
-async(info,rejectWithValue)=>{
+async(info,{rejectWithValue})=>{
     try {
     const res=await axios.post("/login",info)
     return res.data
 } catch (errors) {
-    return rejectWithValue(errors)
+    return rejectWithValue(errors.response.data.msg)
 }
 })
 
 
 export const getusers= createAsyncThunk("/api/getusers",
-async(info,rejectWithValue)=>{
+async(info,{rejectWithValue})=>{
     try {
     const res=await axios.get("/getusers",{
         headers:{
@@ -86,6 +86,7 @@ const userSlice=createSlice({
         userdata:[],
         allusers:[{}],
         orderdata:[],
+        error:[],
         isLoading:false,
         token:localStorage.getItem("token")||null,
         isAuth:localStorage.getItem("isAuth")||false,
@@ -122,10 +123,12 @@ state.token=null},
     state.isAuth=true
     localStorage.setItem("token",state.token)
     localStorage.setItem("isAuth",state.isAuth)
+  
 },
-[signin.rejected]:(state)=>{state.isLoading=false 
+[signin.rejected]:(state,action)=>{state.isLoading=false 
 state.isAuth=false
 state.token=null
+state.error=action.payload
 state.isAdmin=false},
 
 
